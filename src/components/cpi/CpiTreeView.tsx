@@ -70,9 +70,11 @@ function TreeNode({ componentId, scenario, horizon, baseRate, depth, onSelect, s
           {weight.toFixed(1)}%
         </span>
 
-        {/* Base Rate (CPI Growth) */}
-        <span className="text-[10px] tabular-nums text-[#606070] w-[44px] text-right flex-shrink-0">
-          {baseRate.toFixed(2)}%
+        {/* Projected Rate (CPI Growth after AI) */}
+        <span className={`text-[10px] tabular-nums w-[44px] text-right flex-shrink-0 ${
+          agg.aiImpactPp === 0 ? 'text-[#606070]' : 'text-[#9898aa]'
+        }`}>
+          {projRate.toFixed(2)}%
         </span>
 
         {/* Base Contribution */}
@@ -134,7 +136,7 @@ export default function CpiTreeView({ scenario, horizon, onSelectComponent, sele
         <span className="text-[9px] text-[#606070] w-[44px] text-right flex-shrink-0" title="Current CPI weight">
           Wt%
         </span>
-        <span className="text-[9px] text-[#606070] w-[44px] text-right flex-shrink-0" title="Baseline CPI growth rate (no AI)">
+        <span className="text-[9px] text-[#606070] w-[44px] text-right flex-shrink-0" title="Projected CPI growth rate (after AI impact)">
           Growth
         </span>
         <span className="text-[9px] text-[#606070] w-[48px] text-right flex-shrink-0" title="Current contribution to aggregate CPI (Wt × Growth / 100)">

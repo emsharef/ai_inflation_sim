@@ -8,6 +8,7 @@ export interface CpiComponent {
   name: string;
   seriesId: string;
   weight: number; // Dec 2024 relative importance (percentage of total CPI)
+  currentRate: number; // Dec 2025 12-month percent change (YoY)
   parentId: string | null;
   level: HierarchyLevel; // 0=major group, 1=expenditure class, 2=item stratum
   children: string[];

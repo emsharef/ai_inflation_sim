@@ -13,11 +13,25 @@ const MEAN_REVERSION_SPEED = 0.3; // Rate of mean-reversion per year
 const IMPACT_SCALE = 5.0;
 
 /**
- * Calculate baseline trend rate (without AI impact) at time t
- * Uses exponential mean-reversion toward Fed target
+ * Calculate aggregate baseline trend rate (without AI impact) at time t.
+ * Uses exponential mean-reversion toward Fed target.
  */
 export function baselineTrend(currentRate: number, t: number): number {
   return FED_TARGET + (currentRate - FED_TARGET) * Math.exp(-MEAN_REVERSION_SPEED * t);
+}
+
+/**
+ * Calculate per-component baseline trend at time t.
+ * Each component's rate scales proportionally as the aggregate moderates
+ * toward the Fed target.  This preserves relative differences (shelter
+ * stays above average, tech stays deflationary) while the weighted
+ * aggregate converges to 2%.
+ *
+ *   componentBaseline(t) = componentCurrentRate × aggregateBaseline(t) / aggregateCurrent
+ */
+export function componentBaselineTrend(componentCurrentRate: number, t: number): number {
+  const aggregateRatio = baselineTrend(CURRENT_CPI_RATE, t) / CURRENT_CPI_RATE;
+  return componentCurrentRate * aggregateRatio;
 }
 
 /**
@@ -56,7 +70,7 @@ export function projectComponent(
   const horizonYears = horizon === '1yr' ? 1 : horizon === '3yr' ? 3 : 10;
   const modifier = getModifier(componentId, scenario, horizon);
 
-  const baseRate = baselineTrend(CURRENT_CPI_RATE, horizonYears);
+  const baseRate = componentBaselineTrend(component.currentRate, horizonYears);
   const aiImpact = modifier ? modifier.inflationImpactPp * IMPACT_SCALE : 0;
   const weightShift = modifier ? modifier.weightShiftPp * IMPACT_SCALE : 0;
 

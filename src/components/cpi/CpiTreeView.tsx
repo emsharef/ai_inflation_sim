@@ -3,7 +3,7 @@
 import { useState, useMemo } from 'react';
 import { ScenarioId, HorizonId } from '@/lib/types';
 import { cpiComponents, getMajorGroups, getChildren } from '@/data/cpiComponents';
-import { aggregateComponentImpact } from '@/lib/calculations';
+import { aggregateComponentImpact, componentBaselineTrend } from '@/lib/calculations';
 import { formatPp, getImpactColor } from '@/lib/formatters';
 
 interface CpiTreeViewProps {
@@ -32,16 +32,17 @@ function TreeNode({ componentId, scenario, horizon, depth, onSelect, selectedId 
   const agg = aggregateComponentImpact(componentId, scenario, horizon);
   const isSelected = selectedId === componentId;
 
+  const horizonYears = horizon === '1yr' ? 1 : horizon === '3yr' ? 3 : 10;
   const weight = component.weight;
-  const currentRate = component.currentRate;
-  const baseContrib = weight * currentRate / 100;
+  const baseRate = componentBaselineTrend(component.currentRate, horizonYears);
+  const baseContrib = weight * baseRate / 100;
 
   // Rate effect: AI rate change × original weight
   const rateEffect = agg.aiImpactPp * (weight / 100);
   // Total contribution including weight shift
-  const projRate = currentRate + agg.aiImpactPp;
+  const projRate = baseRate + agg.aiImpactPp;
   const adjWeight = weight + agg.weightShiftPp;
-  const totalAiContrib = (projRate * adjWeight - currentRate * weight) / 100;
+  const totalAiContrib = (projRate * adjWeight - baseRate * weight) / 100;
   const weightEffect = totalAiContrib - rateEffect;
 
   return (
@@ -70,9 +71,9 @@ function TreeNode({ componentId, scenario, horizon, depth, onSelect, selectedId 
           {weight.toFixed(1)}%
         </span>
 
-        {/* Current CPI Growth Rate (BLS YoY) */}
+        {/* Baseline projected rate (no AI) */}
         <span className="text-[10px] tabular-nums text-[#9898aa] w-[44px] text-right flex-shrink-0">
-          {currentRate.toFixed(1)}%
+          {baseRate.toFixed(1)}%
         </span>
 
         {/* Base Contribution */}
@@ -131,7 +132,7 @@ export default function CpiTreeView({ scenario, horizon, onSelectComponent, sele
         <span className="text-[9px] text-[#606070] w-[44px] text-right flex-shrink-0" title="Current CPI weight">
           Wt%
         </span>
-        <span className="text-[9px] text-[#606070] w-[44px] text-right flex-shrink-0" title="Current CPI-U 12-month % change (Dec 2025, BLS)">
+        <span className="text-[9px] text-[#606070] w-[44px] text-right flex-shrink-0" title="Baseline projected rate at horizon (no AI impact)">
           Growth
         </span>
         <span className="text-[9px] text-[#606070] w-[48px] text-right flex-shrink-0" title="Current contribution to aggregate CPI (Wt × Growth / 100)">

@@ -160,7 +160,7 @@ export default function CpiTreeView({ scenario, horizon, onSelectComponent, sele
       </div>
 
       {/* Tree */}
-      <div className="max-h-[600px] overflow-y-auto">
+      <div className="max-h-[1000px] overflow-y-auto">
         {majorGroups.map(group => (
           <TreeNode
             key={group.id}

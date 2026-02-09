@@ -45,6 +45,42 @@ function m(id: string, ...args: any[]): AiImpactModifier[] {
 
 export const aiImpactModifiers: AiImpactModifier[] = [
   // ============ FOOD & BEVERAGES ============
+  // --- Food & Beverages (Level 0 parent) ---
+  ...m('food_bev',
+    [0, 0], [0, 0], [0, 0],
+    [0, 0], [0, 0], [0, 0],
+    [0, 0], [0, 0], [0, 0],
+    {
+      b1: "The food and beverage sector—14% of the consumer basket—sees minimal near-term AI disruption as agricultural production, restaurant labor, and regulated alcohol markets each face distinct adoption frictions.",
+      b3: "Uneven AI adoption creates a two-speed dynamic: grocery supply chains capture modest efficiency gains from precision agriculture and logistics optimization, while food-away-from-home lags due to high labor intensity and alcoholic beverages remain insulated by excise taxes.",
+      b10: "Cumulative AI-driven efficiencies deliver moderate deflation in groceries and limited-service restaurants, but full-service dining and alcohol pricing prove sticky; the net effect is a gradual decline in the food & beverage contribution to headline inflation.",
+      m1: "AI tools begin reshaping food economics from both the supply side—precision agriculture, automated processing—and the demand side—ghost kitchens and delivery optimization—though restaurant labor costs and alcohol taxes limit the breadth of near-term impact.",
+      m3: "Grocery deflation accelerates as cultured proteins and vertical farming scale, while restaurant automation expands through robotic kitchens and AI-managed ghost kitchens; alcoholic beverages see only marginal gains, keeping overall food & beverage deflation moderate.",
+      m10: "Broad-based deflation across food at home and food away from home as AI transforms production, processing, and service delivery; consumers reallocate spending from dining out toward cheaper AI-optimized groceries, while alcohol remains a stable but small share of the basket.",
+      t1: "Massive capital deployment into agricultural robotics, cultured meat facilities, and restaurant automation generates short-term inflationary pressure from equipment demand, partially offset by early efficiency gains in packaged food and fast-casual dining.",
+      t3: "Transformative cost reductions emerge across the food system—autonomous farms, AI-controlled vertical agriculture, scaled cultured protein, and robotic restaurants—while consumer spending shifts sharply toward home cooking as grocery deflation outpaces restaurant cost cuts.",
+      t10: "AI fundamentally restructures the economics of food and beverage: grocery costs fall 25-40% through automated agriculture and alternative proteins, restaurant prices decline but remain relatively expensive, and alcohol stays tax-constrained—together driving a major reduction in food's share of consumer inflation.",
+    },
+    ['acemoglu2024','goldmanSachs2023','bisWp1179','enterpriseAiSurvey2024','stlFed2024','imfWp2576']),
+
+  // --- Food at home (Level 1 parent) ---
+  ...m('food_home',
+    [0, 0], [0, 0], [0, 0],
+    [0, 0], [0, 0], [0, 0],
+    [0, 0], [0, 0], [0, 0],
+    {
+      b1: "Across grocery categories, AI adoption remains nascent—precision agriculture pilots and automated warehouse systems are deployed at scale by only the largest producers, leaving consumer prices largely unchanged.",
+      b3: "Modest efficiency gains emerge unevenly: cereals and packaged foods benefit from AI supply-chain optimization, while meats and produce see slower adoption due to biological variability and labor-intensive harvesting.",
+      b10: "AI-optimized farming, processing, and logistics deliver cumulative cost savings of 10-20% across most grocery categories, with the largest deflation in meats and packaged foods where cultured protein and precision fermentation begin to compete on price.",
+      m1: "Early AI tools improve demand forecasting and reduce spoilage across grocery supply chains, but the deflationary signal is strongest in shelf-stable categories like cereals and packaged goods where production is already semi-automated.",
+      m3: "Precision agriculture and robotic harvesting scale commercially, reducing input costs for fruits and vegetables; cultured meat and precision fermentation dairy enter premium segments, compressing margins in conventional proteins and dairy.",
+      m10: "Widespread AI automation from farm to shelf drives broad-based grocery deflation, with meats, dairy, and other packaged foods seeing the steepest declines as cultured and fermented alternatives reach price parity and shift consumer spending patterns.",
+      t1: "Heavy capital investment in vertical farming, cultured meat facilities, and agricultural robotics creates short-term inflationary pressure in equipment markets, while early efficiency gains in cereals and beverages partially offset costs.",
+      t3: "Autonomous farming, AI-controlled vertical farms, and scaled cultured protein production deliver 20-30% cost reductions across most categories; robotic processing facilities eliminate labor bottlenecks in meats and produce.",
+      t10: "Structural transformation of the grocery sector as AI-driven vertical farms, precision fermentation, and fully automated processing slash costs across all sub-categories; consumers shift spending toward fresh and prepared foods as relative prices converge.",
+    },
+    ['acemoglu2024','goldmanSachs2023','bisWp1179','enterpriseAiSurvey2024','stlFed2024']),
+
   ...m('cereals',
     [0, 0], [-0.01, 0], [-0.05, 0],
     [-0.01, 0], [-0.04, 0], [-0.12, 0],
@@ -182,6 +218,24 @@ export const aiImpactModifiers: AiImpactModifier[] = [
     ['acemoglu2024','stlFed2024']),
 
   // ============ APPAREL ============
+  // --- Apparel (Level 0 parent) ---
+  ...m('apparel',
+    [0, 0], [0, 0], [0, 0],
+    [0, 0], [0, 0], [0, 0],
+    [0, 0], [0, 0], [0, 0],
+    {
+      b1: "AI design tools and demand forecasting begin reducing inventory waste at major retailers, but the apparel sector's existing automation and low labor share in rich-country retail limit near-term price effects.",
+      b3: "Computer vision quality control and automated cutting spread to roughly a third of manufacturers; efficiency gains are real but modest, as Acemoglu-style adjustment frictions slow adoption among fragmented global suppliers.",
+      b10: "Gradual automation in garment manufacturing and AI-optimized supply chains deliver cumulative cost savings across all sub-categories, with women's apparel and footwear seeing the largest reductions; consumers shift modestly toward experiences as clothing becomes relatively cheaper.",
+      m1: "AI trend prediction, generative design tools, and virtual try-on technology reduce overproduction and returns across the apparel group, with women's and men's segments benefiting most from demand forecasting improvements.",
+      m3: "Robotic sewing for basic garments scales to 35-40% of production and 3D printing emerges for footwear; mass customization begins replacing inventory-heavy models, delivering meaningful deflation across all five sub-categories.",
+      m10: "Automated factories produce custom-fit clothing and footwear at mass-market prices while on-demand manufacturing eliminates inventory costs; the apparel group's CPI weight erodes as consumers reallocate spending toward services and experiences.",
+      t1: "A surge of investment in automated sewing facilities, 3D printing lines, and AI design platforms creates near-term capital demand, but early efficiency gains in forecasting and returns already offset some costs.",
+      t3: "AI-designed garments optimized for robotic production dominate basic and mid-tier segments; 70% of standard apparel is robot-manufactured and mass customization is mainstream, driving sharp deflation led by women's and men's categories.",
+      t10: "Fully automated micro-factories deliver personalized wardrobes from design through delivery at a fraction of historical cost; the apparel group experiences the deepest deflation among goods categories, and significant consumer spending shifts toward services and digital goods.",
+    },
+    ['goldmanSachs2023','enterpriseAiSurvey2024','brynjolfsson2023','acemoglu2024']),
+
   ...m('mens_boys_apparel',
     [-0.02, 0], [-0.04, 0], [-0.08, -0.01],
     [-0.03, 0], [-0.08, 0], [-0.16, -0.02],
@@ -268,6 +322,60 @@ export const aiImpactModifiers: AiImpactModifier[] = [
     ['enterpriseAiSurvey2024']),
 
   // ============ HOUSING ============
+  // --- Housing (Level 0 parent) ---
+  ...m('housing',
+    [0, 0], [0, 0], [0, 0],
+    [0, 0], [0, 0], [0, 0],
+    [0, 0], [0, 0], [0, 0],
+    {
+      b1: "Housing, the largest CPI component at nearly 45% of the index, shows minimal AI impact in the near term; shelter costs are anchored by land scarcity and long lease cycles, utility rates are regulated, and furnishings see only incremental manufacturing gains.",
+      b3: "Gradual AI adoption across property management, grid optimization, and furniture manufacturing delivers modest but broad-based efficiency improvements. Shelter's massive weight means even small movements dominate the category, while household furnishings contribute disproportionate per-unit deflation.",
+      b10: "AI-optimized building operations, smart grid management, and automated furniture production provide meaningful cumulative savings. Shelter disinflation—driven by AI construction methods and remote-work-enabled demand shifts—accounts for most of the aggregate effect, though declining utility and furnishings costs reinforce the trend.",
+      m1: "Early AI tools improve property management, grid efficiency, and furniture design, but housing's structural inertia limits the aggregate price response. Household furnishings show the most immediate deflation as AI design and manufacturing scale faster than construction or utility reform.",
+      m3: "AI-driven efficiencies become visible across all three sub-categories: predictive maintenance lowers landlord costs, smart grid management reduces energy bills, and automated production slashes furnishings prices. Shelter begins a slow descent as remote work softens demand in high-cost metros.",
+      m10: "Widespread AI adoption structurally transforms housing economics. Smart buildings and AI construction lower shelter costs, comprehensive grid optimization and home energy management cut utility bills, and fully automated furniture production with mass customization drives significant furnishings deflation.",
+      t1: "AI investment creates competing pressures within housing: tech-hub demand temporarily inflates rents and home values, data center growth pushes electricity rates higher, but rapid furnishings automation delivers immediate price declines. The net near-term effect is modestly inflationary.",
+      t3: "Transformative forces begin to dominate as remote work reverses urban rent pressures, advanced grid AI offsets data center energy demand, and robotic furniture production achieves dramatic cost reductions. The housing category shifts from inflationary to deflationary as AI reshapes both supply and demand.",
+      t10: "Revolutionary AI construction methods, comprehensive smart building integration, and fully autonomous utility management deliver historic housing disinflation. Shelter costs decline as modular construction and geographic decentralization reduce both supply costs and demand concentration.",
+    },
+    ['acemoglu2024','bisWp1179','stlFed2024','enterpriseAiSurvey2024','goldmanSachs2023']),
+
+  // --- Shelter (Level 1 parent) ---
+  ...m('shelter',
+    [0, 0], [0, 0], [0, 0],
+    [0, 0], [0, 0], [0, 0],
+    [0, 0], [0, 0], [0, 0],
+    {
+      b1: "Shelter costs remain dominated by land scarcity, zoning constraints, and slow-moving lease cycles; early AI property management tools provide negligible relief to renters or homeowners.",
+      b3: "Modest AI-driven efficiencies in property management and building maintenance begin filtering through to operational costs, but rent and OER inertia limits near-term impact. Primary and owners' equivalent rent, which together account for over 96% of shelter weight, show minimal movement.",
+      b10: "AI-optimized building operations and predictive maintenance deliver meaningful savings, while AI-assisted construction planning begins moderating new housing costs. Lodging away from home sees the largest per-unit deflation as automated hospitality scales, but its small weight limits the aggregate shelter effect.",
+      m1: "AI adoption in property management and hospitality begins, but shelter's massive inertia—driven by long lease terms and the imputed nature of OER—prevents any meaningful near-term price response.",
+      m3: "Predictive maintenance and AI building management reduce landlord operating costs, while automated hotel services create visible price competition in lodging. Rent and OER begin a slow descent as remote-work-enabled geographic dispersion softens demand in expensive metros.",
+      m10: "Widespread smart building integration and AI construction methods lower the cost of both rental and owned housing. Lodging away from home sees substantial deflation from robotic hospitality, while rent and OER decline as AI-enabled remote work reduces the urban premium that has historically supported shelter inflation.",
+      t1: "A surge in AI-sector hiring temporarily bids up rents and home values in tech-hub metros, creating short-term inflationary pressure in both primary rent and OER despite early efficiency gains in lodging.",
+      t3: "Initial rent pressures reverse as remote work accelerates geographic decentralization; AI construction planning and modular building methods begin reducing housing supply costs. Automated hotels and AI-managed short-term rentals drive sharp lodging deflation.",
+      t10: "Revolutionary AI-designed modular construction and robotic building methods structurally lower housing costs, while comprehensive remote work reshapes demand away from expensive urban cores. Lodging costs plummet with fully automated hospitality, and the combined effect produces the largest shelter disinflation in decades.",
+    },
+    ['acemoglu2024','bisWp1179','stlFed2024','enterpriseAiSurvey2024','goldmanSachs2023']),
+
+  // --- Fuels & utilities (Level 1 parent) ---
+  ...m('fuels_utilities',
+    [0, 0], [0, 0], [0, 0],
+    [0, 0], [0, 0], [0, 0],
+    [0, 0], [0, 0], [0, 0],
+    {
+      b1: "Regulated utility pricing and the small, declining fuel oil market limit near-term AI impact; early grid optimization pilots and smart thermostat adoption show promise but have not yet reached scale.",
+      b3: "AI-powered grid management and demand forecasting deliver modest efficiency gains in electricity distribution, the dominant sub-component. Fuel oil and municipal water services see only incremental improvements from route optimization and leak detection.",
+      b10: "Mature AI grid optimization and smart meter integration moderately reduce electricity costs, which drives most of the category's deflation. Predictive maintenance in water infrastructure and optimized heating fuel logistics contribute smaller but meaningful savings.",
+      m1: "AI load balancing and renewable integration begin improving grid efficiency, while smart thermostats optimize heating fuel consumption for early adopters. Municipal utilities lag due to regulatory inertia and slower procurement cycles.",
+      m3: "Energy services, accounting for over 70% of the category weight, see significant efficiency gains from AI demand management and dynamic pricing. Smart heating systems cut fuel oil consumption, and progressive municipalities deploy AI leak detection and waste routing.",
+      m10: "Comprehensive AI grid optimization and home energy management substantially lower electricity costs despite growing data center demand. Fuel oil efficiency improves dramatically for the shrinking user base, and widespread AI utility management reduces municipal service costs.",
+      t1: "Explosive AI data center growth drives a surge in electricity demand that temporarily pushes up residential energy rates, partially offsetting early efficiency gains in fuel oil and municipal services.",
+      t3: "Advanced AI grid management and storage optimization begin offsetting data center demand; electricity prices stabilize and start declining. Rapid deployment of AI heating systems and accelerated municipal automation drive cost reductions across the remaining sub-components.",
+      t10: "Revolutionary grid AI, advanced renewables, and ultra-efficient AI-designed appliances dramatically reduce electricity costs despite ongoing data center growth. The shrinking fuel oil market sees massive per-unit efficiency gains, and comprehensive AI management of water, sewer, and waste systems significantly lowers municipal costs.",
+    },
+    ['acemoglu2024','stlFed2024','goldmanSachs2023','bisWp1179']),
+
   ...m('rent_primary',
     [0, 0], [0, 0], [-0.02, 0],
     [0, 0], [-0.01, 0], [-0.04, -0.02],
@@ -388,6 +496,42 @@ export const aiImpactModifiers: AiImpactModifier[] = [
     ['enterpriseAiSurvey2024','goldmanSachs2023']),
 
   // ============ TRANSPORTATION ============
+  // --- Transportation (Level 0 parent) ---
+  ...m('transportation',
+    [0, 0], [0, 0], [0, 0],
+    [0, 0], [0, 0], [0, 0],
+    [0, 0], [0, 0], [0, 0],
+    {
+      b1: "Transportation costs remain stable as AI adoption is limited to early-stage manufacturing optimization and pilot telematics programs; fuel prices and insurance premiums continue to be driven by traditional market forces.",
+      b3: "AI begins delivering measurable efficiencies in vehicle manufacturing and fleet logistics, while ADAS features slowly expand; however, Acemoglu-style labor displacement frictions and regulatory caution limit the pace of cost reduction across the 16.6% CPI weight.",
+      b10: "Cumulative automation in manufacturing, predictive maintenance, and EV adoption moderately reduce costs across private transport, while public transit sees only incremental AI-driven improvements; the sector's large CPI weight means even modest per-component deflation has meaningful aggregate impact.",
+      m1: "AI-powered supply chain management and factory automation begin reducing new vehicle production costs, while telematics and AI claims processing start improving insurance efficiency; fuel and public transit remain largely unchanged.",
+      m3: "Widespread factory automation drives substantial new vehicle deflation, EV adoption accelerates fuel demand decline, and autonomous features begin restructuring insurance risk models; public transit benefits from AI scheduling and dynamic routing.",
+      m10: "Advanced manufacturing automation, dominant EV fleets, and partial vehicle autonomy deliver deep deflation across private transport, while AI-orchestrated public transit expands ridership; transportation's CPI weight declines as shared autonomous mobility reduces household vehicle spending.",
+      t1: "Massive investment in autonomous vehicle technology, EV manufacturing, and AI logistics creates short-term inflationary pressure on new vehicles, while fuel and insurance remain near baseline levels.",
+      t3: "Rapid scaling of autonomous features and factory automation sharply reduces vehicle and insurance costs; EV adoption collapses fuel demand; autonomous buses transform public transit economics; the sector enters a structural repricing.",
+      t10: "Robotaxis and autonomous EVs fundamentally reshape transportation economics: personal vehicle ownership declines dramatically, insurance liability shifts to fleet operators, fuel becomes a niche product, and public transit operates at a fraction of historical cost.",
+    },
+    ['fordManufacturing2024','goldmanSachs2023','bisWp1179','imfWp2576','enterpriseAiSurvey2024','acemoglu2024','stlFed2024']),
+
+  // --- Private transportation (Level 1 parent) ---
+  ...m('private_transport',
+    [0, 0], [0, 0], [0, 0],
+    [0, 0], [0, 0], [0, 0],
+    [0, 0], [0, 0], [0, 0],
+    {
+      b1: "Private transportation costs hold steady as AI manufacturing tools and diagnostic systems see only pilot-stage deployment; new vehicle prices, fuel, and insurance remain driven by pre-AI market dynamics.",
+      b3: "AI-optimized manufacturing and supply chains begin reducing new vehicle production costs, the largest sub-component by weight, while predictive maintenance and telematics deliver modest savings in repair and insurance; fuel prices edge lower as refining logistics improve.",
+      b10: "Mature factory automation and expanding EV adoption drive the bulk of private transport deflation through new and used vehicles; insurance costs decline as ADAS features reduce accidents, and maintenance simplifies with electric drivetrains; government fees rise modestly to replace lost fuel tax revenue.",
+      m1: "AI design optimization and factory automation begin lowering new vehicle costs, while AI claims processing and diagnostics provide early savings in insurance and maintenance; fuel demand starts a gradual decline with EV adoption.",
+      m3: "New vehicles lead the deflation as widespread factory automation and AI-designed EV components cut production costs substantially; insurance reprices as autonomous features reduce accidents; fuel demand declines meaningfully with accelerating EV penetration.",
+      m10: "Deep deflation across all major sub-categories except fees: automated manufacturing slashes vehicle costs, EV dominance collapses fuel spending, AI-driven risk models and fewer accidents dramatically lower insurance, and predictive maintenance reduces repair needs; rising government fees partially offset savings.",
+      t1: "A semiconductor and AI investment boom temporarily inflates new vehicle costs, especially for tech-heavy EVs; other sub-categories see early AI tool deployment with minimal price impact.",
+      t3: "Factory automation and autonomous features mature rapidly, driving sharp new vehicle deflation; insurance premiums fall as liability shifts toward manufacturers; EV adoption accelerates fuel demand collapse; maintenance costs plummet with AI diagnostics and simpler EV drivetrains.",
+      t10: "Autonomous EV fleets produced in highly automated factories transform private transportation economics: vehicle ownership declines dramatically, personal insurance markets shrink as liability shifts to fleet operators, fuel becomes a niche product, and maintenance is handled by AI-managed fleet services.",
+    },
+    ['fordManufacturing2024','goldmanSachs2023','bisWp1179','imfWp2576','enterpriseAiSurvey2024','acemoglu2024','stlFed2024']),
+
   ...m('new_vehicles',
     [0.01, 0], [-0.03, 0], [-0.12, -0.08],
     [-0.02, 0], [-0.12, 0.03], [-0.28, -0.15],
@@ -525,6 +669,60 @@ export const aiImpactModifiers: AiImpactModifier[] = [
     ['goldmanSachs2023','bisWp1179']),
 
   // ============ MEDICAL CARE ============
+  // --- Medical care (Level 0 parent) ---
+  ...m('medical_care',
+    [0, 0], [0, 0], [0, 0],
+    [0, 0], [0, 0], [0, 0],
+    [0, 0], [0, 0], [0, 0],
+    {
+      b1: "Healthcare's complexity and regulatory inertia insulate it from near-term AI disruption; drug pipelines, clinical workflows, and insurance bureaucracies operate on long adoption cycles with modest efficiency gains from early AI pilots.",
+      b3: "AI diagnostic tools and drug discovery platforms gain traction in leading health systems, but Acemoglu-style frictions—credentialing, liability, and payer reimbursement structures—limit the pass-through of efficiency gains to consumer prices.",
+      b10: "Cumulative AI adoption across pharmaceuticals, diagnostics, and hospital operations yields meaningful but bounded cost reductions; the labor-intensive core of nursing, surgery, and elder care resists deep automation, keeping structural healthcare inflation above economy-wide averages.",
+      m1: "Initial AI investments concentrate in drug discovery pipelines and hospital administrative systems, creating measurable but early-stage productivity gains that have yet to flow through to insurance premiums or out-of-pocket costs.",
+      m3: "AI-accelerated generics, automated claims processing, and telehealth triage begin compressing costs in prescription drugs and physician visits, while hospital and nursing care—the largest sub-components—see slower adoption due to patient-safety requirements.",
+      m10: "Broad AI integration across the medical value chain drives substantial deflation in drugs, diagnostics, and administrative overhead; however, hands-on care in hospitals and nursing homes limits total medical CPI impact, and consumers shift spending toward AI-enabled preventive care.",
+      t1: "Heavy capital deployment into AI drug discovery, robotic surgery platforms, and automated claims systems creates near-term cost pressures from investment, though early diagnostic AI already improves throughput in radiology and pathology.",
+      t3: "AI-discovered drugs reach market with compressed timelines, robotic surgical assistance becomes standard in major hospitals, and fully automated insurance operations dramatically cut administrative waste—together reshaping the cost structure of the U.S. healthcare system.",
+      t10: "Transformative AI penetration slashes drug development costs, enables expert-level diagnostics at scale, and automates most hospital administrative functions; yet the irreducible human element in bedside care, elder services, and complex surgery prevents healthcare from deflating as fast as goods-producing sectors.",
+    },
+    ['mckinseyHealthcare2023','goldmanSachs2023','acemoglu2024','enterpriseAiSurvey2024','brynjolfsson2023','bisWp1179']),
+
+  // --- Medical care commodities (Level 1 parent) ---
+  ...m('medical_commodities',
+    [0, 0], [0, 0], [0, 0],
+    [0, 0], [0, 0], [0, 0],
+    [0, 0], [0, 0], [0, 0],
+    {
+      b1: "Pharmaceutical manufacturing and distribution see minimal disruption; AI drug-candidate screening is in early research phases and OTC supply chains are already highly optimized.",
+      b3: "AI accelerates identification of generic drug candidates and modestly improves pharmaceutical manufacturing quality control, but patent protections and PBM negotiations still dominate prescription drug pricing.",
+      b10: "Prescription drugs—the larger sub-component—drive most of the category's deflation as AI shortens generic development timelines, while nonprescription products see steadier but smaller gains from automated manufacturing and supply chain optimization.",
+      m1: "AI drug discovery platforms enter late-preclinical pipelines and warehouse automation begins trimming OTC distribution costs, though consumer-facing price effects remain limited.",
+      m3: "First AI-discovered generics approach regulatory approval, putting visible pricing pressure on off-patent therapeutics; OTC manufacturers deploy AI quality control and demand forecasting to reduce inventory waste.",
+      m10: "AI-driven acceleration of generic competition becomes the dominant deflationary force in medical commodities, with prescription drugs seeing 30-40% faster development cycles; nonprescription products contribute additional savings through fully automated production and personalized formulations.",
+      t1: "Major pharma firms commit billions to AI discovery platforms, creating near-term R&D cost pressures even as breakthrough drug candidates are identified at unprecedented speed across oncology and rare diseases.",
+      t3: "Multiple AI-discovered drugs gain approval with dramatically shortened timelines, collapsing prescription drug costs in competitive therapeutic areas; automated pharmaceutical manufacturing slashes OTC production costs simultaneously.",
+      t10: "AI transforms the entire pharmaceutical value chain—from molecule design through manufacturing to personalized dosing—delivering the deepest deflation in prescription drugs, while nonprescription products benefit from fully automated production and AI-optimized direct-to-consumer distribution.",
+    },
+    ['mckinseyHealthcare2023','goldmanSachs2023','acemoglu2024','enterpriseAiSurvey2024']),
+
+  // --- Medical care services (Level 1 parent) ---
+  ...m('medical_services',
+    [0, 0], [0, 0], [0, 0],
+    [0, 0], [0, 0], [0, 0],
+    [0, 0], [0, 0], [0, 0],
+    {
+      b1: "Medical services remain overwhelmingly labor-intensive; early AI diagnostic pilots and claims-processing automation produce negligible aggregate cost savings across the category's diverse sub-components.",
+      b3: "AI diagnostic support and administrative automation gain footholds in physician offices and hospital systems, but dental, nursing, and eye care—where hands-on procedures dominate—see little change, limiting overall category deflation.",
+      b10: "Hospital services and physicians' offices, which together constitute the bulk of medical services spending, deliver the most AI-driven savings through diagnostic automation and robotic surgical assistance; labor-intensive sub-categories like nursing homes and dental care remain structurally resistant to deep cost reduction.",
+      m1: "Hospitals and large physician groups deploy AI for clinical decision support, automated coding, and predictive patient monitoring, while insurance claims automation begins reducing administrative friction across the category.",
+      m3: "AI diagnostics and telehealth triage meaningfully reduce physician visit costs, automated claims processing compresses health insurance overhead, and robotic surgical assistance scales in hospitals—though dental, eye care, and nursing home costs prove more resistant to automation.",
+      m10: "Broad AI integration delivers substantial deflation in hospital operations, physician services, and health insurance administration; however, the hands-on nature of nursing home care, dental procedures, and eye care limits total category savings, while consumers shift spending toward AI-enabled preventive and outpatient models.",
+      t1: "Rapid deployment of AI diagnostic systems in radiology, pathology, and emergency medicine immediately improves hospital throughput, while automated prior-authorization and claims systems begin cutting health insurance administrative waste.",
+      t3: "AI handles 40-50% of routine diagnostics, robotic surgery becomes standard at major hospitals, and fully automated claims processing dramatically reduces insurance overhead—producing visible cost reductions across the largest medical service sub-categories.",
+      t10: "Transformative AI reshapes physician services, hospital operations, and insurance administration, driving deep deflation in the highest-weighted sub-categories; yet nursing homes and dental care, where irreducible human touch is essential, prevent medical services from deflating as steeply as technology-driven sectors.",
+    },
+    ['mckinseyHealthcare2023','acemoglu2024','brynjolfsson2023','bisWp1179','enterpriseAiSurvey2024']),
+
   ...m('prescription_drugs',
     [0, 0], [-0.03, 0], [-0.10, 0],
     [-0.01, 0], [-0.08, 0], [-0.25, -0.10],
@@ -662,6 +860,24 @@ export const aiImpactModifiers: AiImpactModifier[] = [
     ['mckinseyHealthcare2023','acemoglu2024']),
 
   // ============ RECREATION ============
+  // --- Recreation (Level 0 parent) ---
+  ...m('recreation',
+    [0, 0], [0, 0], [0, 0],
+    [0, 0], [0, 0], [0, 0],
+    [0, 0], [0, 0], [0, 0],
+    {
+      b1: "Recreation spans a heterogeneous mix of digital content, manufactured goods, and in-person services; near-term AI impact concentrates in streaming and content production, while physical goods and live entertainment see only incremental optimization.",
+      b3: "AI-driven content production and automated manufacturing begin lowering costs in streaming and toys, but labor-intensive sub-categories like veterinary services and live admissions see limited efficiency gains, producing uneven deflation across the sector.",
+      b10: "Streaming and digital entertainment—where AI content production achieves near-zero marginal cost—drive the deepest deflation, while sporting goods and toys benefit from automated manufacturing; pets, veterinary services, and live admissions resist deep cost reduction due to their physical and experiential nature.",
+      m1: "AI content tools and personalization engines create immediate cost savings for streaming platforms, while early automated manufacturing and supply chain optimization begin affecting toys and sporting goods pricing.",
+      m3: "AI-generated content slashes streaming production costs and automated manufacturing scales across consumer goods sub-categories; live entertainment and veterinary care see moderate efficiency gains from AI-optimized operations but remain fundamentally labor- and facility-dependent.",
+      m10: "Pervasive AI adoption produces dramatic deflation in digital entertainment and manufactured recreational goods, moderate savings in live admissions and other recreation services, and meaningful but bounded cost reductions in veterinary care—reshaping the sector's cost structure around AI-driven content and production.",
+      t1: "Rapid AI deployment in content creation, manufacturing automation, and personalization immediately reduces costs for streaming platforms and consumer recreation goods, while investment in AI entertainment infrastructure creates short-term capital spending pressure.",
+      t3: "AI autonomously generates substantial shares of streaming content, fully automates toy and equipment manufacturing, and transforms venue operations—creating a bifurcation between deeply deflating digital and manufactured goods versus more slowly adjusting in-person services.",
+      t10: "AI fundamentally transforms recreation economics: streaming content approaches zero marginal cost, manufactured goods are produced by fully autonomous factories, and even live entertainment and veterinary services see significant automation—though consumers shift spending toward premium AI-personalized and interactive experiences.",
+    },
+    ['goldmanSachs2023','brynjolfsson2023','aiInferenceCosts2024','enterpriseAiSurvey2024','acemoglu2024']),
+
   ...m('cable_satellite_streaming',
     [-0.03, 0], [-0.08, 0.01], [-0.20, 0.02],
     [-0.05, 0.01], [-0.15, 0.02], [-0.40, 0.05],
@@ -782,6 +998,60 @@ export const aiImpactModifiers: AiImpactModifier[] = [
     ['enterpriseAiSurvey2024']),
 
   // ============ EDUCATION & COMMUNICATION ============
+  // --- Education & communication (Level 0 parent) ---
+  ...m('education_communication',
+    [0, 0], [0, 0], [0, 0],
+    [0, 0], [0, 0], [0, 0],
+    [0, 0], [0, 0], [0, 0],
+    {
+      b1: "Education and communication markets begin absorbing early AI tools, but institutional inertia in schools and regulatory frameworks in telecom limit near-term pricing impact across the group.",
+      b3: "AI tutoring supplements and network automation deliver modest efficiency gains, though education's labor-intensive model and telecom's infrastructure costs constrain deflation to incremental improvements.",
+      b10: "Hybrid instruction models and automated telecom operations reduce costs meaningfully, but Acemoglu-style adjustment frictions in credentialing systems and regulated utilities slow the pace of structural transformation.",
+      m1: "AI-powered learning platforms and network management tools gain traction, with IT hardware and software seeing the earliest price disruption as AI coding assistants and inference cost declines compress development expenses.",
+      m3: "Educational materials face severe pricing pressure from AI-generated content while telecom automation and software cost collapse accelerate, making IT and communication the fastest-deflating sub-sectors within the group.",
+      m10: "AI fundamentally restructures both education delivery and communication infrastructure, with personalized learning replacing traditional tuition models and fully automated networks operating as low-cost utilities, driving broad-based deflation across the group.",
+      t1: "Immediate disruption concentrates in IT and educational materials as AI coding tools and free AI tutors displace paid alternatives, while telecom and tuition markets begin absorbing early automation investments.",
+      t3: "Education enters structural crisis as AI delivers personalized instruction at scale, while software development costs collapse and network automation eliminates most telecom labor, creating cascading deflation across all sub-categories.",
+      t10: "The education and communication landscape is unrecognizable as AI provides expert-level tutoring at near-zero marginal cost, software writes itself, and fully automated networks deliver connectivity as a commodity utility, producing the deepest deflation of any major CPI group.",
+    },
+    ['brynjolfsson2023','goldmanSachs2023','pennWharton2024','aiInferenceCosts2024','enterpriseAiSurvey2024']),
+
+  // --- Education (Level 1 parent) ---
+  ...m('education',
+    [0, 0], [0, 0], [0, 0],
+    [0, 0], [0, 0], [0, 0],
+    [0, 0], [0, 0], [0, 0],
+    {
+      b1: "Early AI tutoring tools supplement traditional instruction while educational materials face initial substitution from free AI chatbots, but institutional purchasing cycles and accreditation requirements limit overall pricing impact.",
+      b3: "AI-assisted grading and adaptive learning platforms reduce some overhead costs in tuition-based education, while textbook publishers face growing pressure as students shift to AI-generated study materials.",
+      b10: "Hybrid instruction models with AI tutoring components modestly reduce per-student costs, while traditional educational publishing contracts sharply as AI systems provide superior personalized content at near-zero marginal cost.",
+      m1: "Educational books and supplies see the earliest disruption as students rapidly adopt AI for homework help and reference material, while tuition markets absorb initial AI teaching assistant deployments with minimal price response.",
+      m3: "Textbook and reference material markets face severe pricing collapse from AI-generated alternatives, while widespread AI tutoring platforms begin restructuring tuition models away from pure in-person instruction.",
+      m10: "AI delivers substantial portions of coursework and personalized instruction, significantly reducing tuition costs, while traditional educational materials become largely obsolete as AI systems generate dynamic content tailored to individual learners.",
+      t1: "Immediate disruption in educational materials as students abandon textbooks for AI, while aggressive rollout of adaptive learning platforms begins pressuring supplementary education and test preparation markets.",
+      t3: "Educational publishing enters crisis as AI generates superior customized materials, while major restructuring of instruction delivery sees AI handling differentiated teaching at scale, dramatically reducing tuition costs.",
+      t10: "Education is fundamentally transformed with AI providing personalized expert instruction and dynamic materials at near-zero cost, collapsing both tuition and educational materials spending as traditional delivery models become obsolete.",
+    },
+    ['brynjolfsson2023','goldmanSachs2023','pennWharton2024','aiInferenceCosts2024']),
+
+  // --- Communication (Level 1 parent) ---
+  ...m('communication',
+    [0, 0], [0, 0], [0, 0],
+    [0, 0], [0, 0], [0, 0],
+    [0, 0], [0, 0], [0, 0],
+    {
+      b1: "Network automation and AI coding assistants begin reducing operational costs across telecom and IT, though infrastructure requirements and physical delivery constraints limit near-term consumer price impact.",
+      b3: "AI-driven network optimization and software development efficiency gains deliver moderate cost savings, with IT hardware and software seeing the steepest deflation as AI writes increasing portions of code.",
+      b10: "Automated telecom operations and collapsed software development costs drive broad deflation, while information services face pricing erosion from AI substitutes and autonomous delivery pilots reduce logistics costs.",
+      m1: "IT hardware and software leads deflation as AI coding tools slash development costs and inference hardware improves, while carriers deploy AI for network management and customer support automation.",
+      m3: "Software costs plummet as AI handles most routine development, telecom automation substantially reduces carrier overhead, and paid information services face severe pressure from free AI alternatives.",
+      m10: "Communication becomes a largely automated sector with AI managing networks as utilities, software development costs near zero, information services displaced by AI, and autonomous delivery networks operating at a fraction of historical costs.",
+      t1: "Immediate productivity surge in IT as AI writes majority of code at early-adopter firms, while rapid deployment of network automation and AI customer service creates efficiency gains across telecom.",
+      t3: "Software costs collapse as AI handles 70-80% of development, network operations approach full automation, and information service pricing models fail as AI provides superior real-time analysis at scale.",
+      t10: "AI autonomously develops software, manages fully automated networks, provides comprehensive information services, and orchestrates autonomous delivery, making communication the most deeply deflated sub-sector in the consumer price index.",
+    },
+    ['enterpriseAiSurvey2024','brynjolfsson2023','goldmanSachs2023','aiInferenceCosts2024']),
+
   ...m('tuition_childcare',
     [0, 0], [-0.02, 0], [-0.05, -0.05],
     [-0.01, 0], [-0.05, -0.03], [-0.15, -0.15],
@@ -885,6 +1155,60 @@ export const aiImpactModifiers: AiImpactModifier[] = [
     ['goldmanSachs2023','enterpriseAiSurvey2024']),
 
   // ============ OTHER GOODS & SERVICES ============
+  // --- Other goods & services (Level 0 parent) ---
+  ...m('other_goods_services',
+    [0, 0], [0, 0], [0, 0],
+    [0, 0], [0, 0], [0, 0],
+    [0, 0], [0, 0], [0, 0],
+    {
+      b1: "This diverse group spans highly automatable knowledge work and stubbornly labor-intensive personal services, with AI legal research tools providing the earliest measurable cost pressure while haircuts and funerals remain untouched.",
+      b3: "Legal and financial services see growing AI disruption of routine tasks, while personal care services resist automation due to their physical, hands-on nature, creating a widening deflation gap within the group.",
+      b10: "Knowledge-intensive services like legal, financial, and tax preparation experience significant cost reductions from AI automation, but the group's overall deflation is moderated by labor-intensive personal services where Acemoglu-style automation barriers persist.",
+      m1: "AI rapidly displaces routine legal research, financial advisory, and tax preparation tasks, while physical personal care services see only back-office efficiency gains from scheduling and inventory tools.",
+      m3: "Legal and tax preparation industries face structural disruption as AI competently handles most routine work, financial services automate broadly, but haircuts, funerals, and laundry remain labor-dependent with minimal automation.",
+      m10: "A stark bifurcation emerges: knowledge services like legal, financial, and tax face 60-80% cost reductions from AI, while labor-intensive personal services achieve only modest savings, making this group a microcosm of AI's uneven economic impact.",
+      t1: "Immediate disruption in legal and tax preparation as AI demonstrates superior performance in research, analysis, and return preparation, while physical personal services remain insulated from the automation wave.",
+      t3: "Legal and financial industries enter crisis as AI autonomously handles most professional tasks, tax preparation approaches full automation, but personal care and funeral services prove that proximity-dependent labor resists even aggressive AI deployment.",
+      t10: "Knowledge-intensive miscellaneous services experience among the deepest deflation in the entire CPI as AI handles legal, financial, and tax work end-to-end, while personal care achieves only moderate savings from robotic systems, illustrating the fundamental divide between cognitive and physical labor automation.",
+    },
+    ['legalAiSurvey2024','brynjolfsson2023','goldmanSachs2023','enterpriseAiSurvey2024','acemoglu2024','aiInferenceCosts2024']),
+
+  // --- Personal care (Level 1 parent) ---
+  ...m('personal_care',
+    [0, 0], [0, 0], [0, 0],
+    [0, 0], [0, 0], [0, 0],
+    [0, 0], [0, 0], [0, 0],
+    {
+      b1: "Personal care remains one of the most automation-resistant CPI categories, with haircuts requiring physical skill and cosmetics relying on brand marketing rather than production cost optimization.",
+      b3: "AI formulation tools and supply chain optimization generate modest savings in cosmetics and personal care products, while labor-intensive haircut services see only marginal back-office efficiency gains.",
+      b10: "Cosmetics and personal care products benefit from AI-optimized manufacturing and personalized formulations, but haircut services remain stubbornly expensive as skilled labor requirements prevent meaningful automation.",
+      m1: "Cosmetics companies deploy AI for product development and marketing optimization, while salon services absorb AI scheduling tools with negligible impact on service delivery costs.",
+      m3: "AI-driven personalization and manufacturing efficiency reduce cosmetics costs moderately, but the core haircut service remains a human-delivered, labor-intensive activity with rising wage pressure.",
+      m10: "A bifurcation within personal care emerges: AI-designed cosmetics and products achieve significant cost reductions through automated manufacturing, while haircut services see only experimental robotic systems for standardized cuts.",
+      t1: "Despite rapid AI disruption across the economy, physical personal care services demonstrate the limits of near-term automation, with only cosmetics manufacturing seeing meaningful AI deployment.",
+      t3: "AI transforms cosmetics through custom formulations and optimized supply chains, while early robotic cutting systems emerge for basic hairstyles, generating modest price pressure in an otherwise labor-resistant category.",
+      t10: "Cosmetics achieve significant deflation from AI-designed products and automated manufacturing, while advanced robotic cutting captures some standardized service market share, though premium human stylists maintain pricing power in a bifurcated market.",
+    },
+    ['acemoglu2024','enterpriseAiSurvey2024']),
+
+  // --- Miscellaneous personal services (Level 1 parent) ---
+  ...m('miscellaneous',
+    [0, 0], [0, 0], [0, 0],
+    [0, 0], [0, 0], [0, 0],
+    [0, 0], [0, 0], [0, 0],
+    {
+      b1: "Legal services and tax preparation show the earliest AI cost pressure within miscellaneous services, while funeral expenses and laundry remain largely unaffected by automation in the near term.",
+      b3: "AI handles growing shares of legal research, financial advisory, and tax preparation work, delivering moderate deflation in knowledge-intensive services while physical services like funerals and dry cleaning resist change.",
+      b10: "Legal, financial, and tax services experience substantial cost reductions as AI automates 40-60% of routine professional work, but funeral and laundry services see only minor efficiency gains from scheduling and logistics optimization.",
+      m1: "Rapid AI adoption disrupts legal research and tax preparation immediately, while financial services begin automating advisory and transaction processing, leaving physical services like funerals and laundry largely untouched.",
+      m3: "Legal and tax preparation industries face structural contraction as AI competently handles most routine work, financial services automate broadly, but funeral and laundry operations remain dependent on physical labor with only back-office improvements.",
+      m10: "Knowledge-intensive miscellaneous services undergo massive restructuring with AI handling 60-70% of legal, financial, and tax tasks at dramatically lower cost, while labor-intensive funeral and laundry services achieve only modest automation of sorting, coordination, and logistics.",
+      t1: "Immediate disruption in legal and tax preparation as AI outperforms humans in research, analysis, and routine filings, while financial services deploy sophisticated AI advisors and physical services remain insulated.",
+      t3: "Legal and tax industries contract sharply as AI autonomously manages most professional tasks, financial services approach full automation for routine operations, but funeral and laundry services prove resistant to all but incremental robotic and logistics improvements.",
+      t10: "Legal, financial, and tax services experience among the deepest deflation in the entire CPI as AI handles end-to-end professional workflows at near-zero marginal cost, while funeral and laundry services achieve only moderate savings from advanced robotics.",
+    },
+    ['legalAiSurvey2024','brynjolfsson2023','goldmanSachs2023','enterpriseAiSurvey2024','acemoglu2024','aiInferenceCosts2024']),
+
   ...m('haircuts_services',
     [0, 0], [0, 0], [-0.05, 0],
     [0, 0], [-0.05, 0], [-0.15, 0],

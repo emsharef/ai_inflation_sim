@@ -190,12 +190,16 @@ export function aggregateComponentImpact(
     mod?.citations.forEach(c => allCitations.add(c));
   }
 
+  // Check for a direct narrative on the parent node itself
+  const parentMod = getModifier(componentId, scenario, horizon);
+  const hasDirectNarrative = parentMod && parentMod.componentId === componentId;
+
   return {
     aiImpactPp: totalWeight > 0 ? weightedImpact / totalWeight : 0,
     weightShiftPp: totalWeightShift,
-    confidence: 'medium',
-    explanation: `Aggregate of ${leafIds.length} sub-components weighted by CPI share.`,
-    citations: Array.from(allCitations),
+    confidence: hasDirectNarrative ? parentMod.confidence : 'medium',
+    explanation: hasDirectNarrative ? parentMod.explanation : `Aggregate of ${leafIds.length} sub-components weighted by CPI share.`,
+    citations: hasDirectNarrative ? parentMod.citations : Array.from(allCitations),
   };
 }
 

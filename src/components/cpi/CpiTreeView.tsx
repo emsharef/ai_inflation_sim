@@ -124,8 +124,18 @@ export default function CpiTreeView({ scenario, horizon, onSelectComponent, sele
 
   return (
     <div className="bg-[#13131d] border border-[#2a2a3a] rounded-md overflow-hidden">
+      {/* Group labels */}
+      <div className="flex items-center px-1 pt-1.5 pb-0 bg-[#0a0a0f]">
+        <div className="flex-1 min-w-0" />
+        <span className="text-[8px] uppercase tracking-wider text-[#4a4a5a] w-[136px] text-center flex-shrink-0 border-b border-[#2a2a3a] pb-0.5">
+          Baseline
+        </span>
+        <span className="text-[8px] uppercase tracking-wider text-[#4a4a5a] w-[150px] text-center flex-shrink-0 border-b border-emerald-500/20 pb-0.5 ml-px">
+          AI Impact
+        </span>
+      </div>
       {/* Column headers */}
-      <div className="flex items-center px-1 py-1.5 border-b border-[#2a2a3a] bg-[#0a0a0f]">
+      <div className="flex items-center px-1 py-1 border-b border-[#2a2a3a] bg-[#0a0a0f]">
         <div className="text-[9px] text-[#606070] font-normal flex-1 min-w-0" style={{ paddingLeft: '8px' }}>
           Component
         </div>
@@ -135,7 +145,7 @@ export default function CpiTreeView({ scenario, horizon, onSelectComponent, sele
         <span className="text-[9px] text-[#606070] w-[44px] text-right flex-shrink-0" title="Baseline projected rate at horizon (no AI impact)">
           Growth
         </span>
-        <span className="text-[9px] text-[#606070] w-[48px] text-right flex-shrink-0" title="Current contribution to aggregate CPI (Wt × Growth / 100)">
+        <span className="text-[9px] text-[#606070] w-[48px] text-right flex-shrink-0" title="Baseline contribution to aggregate CPI (Wt × Growth / 100)">
           Contrib
         </span>
         <span className="text-[9px] text-[#606070] w-[48px] text-right flex-shrink-0" title="AI-driven CPI weight change (pp)">

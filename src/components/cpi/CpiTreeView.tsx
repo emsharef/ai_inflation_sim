@@ -1,9 +1,9 @@
 'use client';
 
 import { useState, useMemo } from 'react';
-import { ScenarioId, HorizonId } from '@/lib/types';
+import { ScenarioId, HorizonId, ProjectionResult } from '@/lib/types';
 import { cpiComponents, getMajorGroups, getChildren } from '@/data/cpiComponents';
-import { aggregateComponentImpact, componentBaselineTrend } from '@/lib/calculations';
+import { aggregateComponentImpact, calculateAggregateProjection, componentBaselineTrend } from '@/lib/calculations';
 import { formatPp, getImpactColor } from '@/lib/formatters';
 
 interface CpiTreeViewProps {
@@ -18,11 +18,22 @@ interface TreeNodeProps {
   scenario: ScenarioId;
   horizon: HorizonId;
   depth: number;
+  leafContribMap: Record<string, number>;
   onSelect?: (id: string) => void;
   selectedId?: string | null;
 }
 
-function TreeNode({ componentId, scenario, horizon, depth, onSelect, selectedId }: TreeNodeProps) {
+/**
+ * Collect all leaf descendant IDs for a component.
+ */
+function getLeafDescendants(id: string): string[] {
+  const comp = cpiComponents[id];
+  if (!comp) return [];
+  if (comp.children.length === 0) return [id];
+  return comp.children.flatMap(getLeafDescendants);
+}
+
+function TreeNode({ componentId, scenario, horizon, depth, leafContribMap, onSelect, selectedId }: TreeNodeProps) {
   const [expanded, setExpanded] = useState(depth === 0);
   const component = cpiComponents[componentId];
   if (!component) return null;
@@ -37,13 +48,9 @@ function TreeNode({ componentId, scenario, horizon, depth, onSelect, selectedId 
   const baseRate = componentBaselineTrend(component.currentRate, horizonYears);
   const baseContrib = weight * baseRate / 100;
 
-  // Rate effect: AI rate change × original weight
-  const rateEffect = agg.aiImpactPp * (weight / 100);
-  // Total contribution including weight shift
-  const projRate = baseRate + agg.aiImpactPp;
-  const adjWeight = weight + agg.weightShiftPp;
-  const totalAiContrib = (projRate * adjWeight - baseRate * weight) / 100;
-  const weightEffect = totalAiContrib - rateEffect;
+  // AI Impact derived from the rebalanced aggregate so the sum matches the headline
+  const leafIds = component.children.length === 0 ? [componentId] : getLeafDescendants(componentId);
+  const totalAiContrib = leafIds.reduce((sum, lid) => sum + (leafContribMap[lid] ?? 0), 0);
 
   return (
     <div>
@@ -109,6 +116,7 @@ function TreeNode({ componentId, scenario, horizon, depth, onSelect, selectedId 
               scenario={scenario}
               horizon={horizon}
               depth={depth + 1}
+              leafContribMap={leafContribMap}
               onSelect={onSelect}
               selectedId={selectedId}
             />
@@ -121,6 +129,20 @@ function TreeNode({ componentId, scenario, horizon, depth, onSelect, selectedId 
 
 export default function CpiTreeView({ scenario, horizon, onSelectComponent, selectedId }: CpiTreeViewProps) {
   const majorGroups = useMemo(() => getMajorGroups(), []);
+
+  // Compute aggregate once; build a per-leaf AI contribution map so the tree
+  // sums exactly to the headline number (uses rebalanced weights).
+  const leafContribMap = useMemo(() => {
+    const agg = calculateAggregateProjection(scenario, horizon);
+    const map: Record<string, number> = {};
+    for (const r of agg.componentResults) {
+      // AI contribution = projected contribution - baseline contribution
+      const projContrib = r.projectedRate * (r.adjustedWeight / 100);
+      const baseContrib = r.baselineRate * (r.originalWeight / 100);
+      map[r.componentId] = projContrib - baseContrib;
+    }
+    return map;
+  }, [scenario, horizon]);
 
   return (
     <div className="bg-[#13131d] border border-[#2a2a3a] rounded-md overflow-hidden">
@@ -168,6 +190,7 @@ export default function CpiTreeView({ scenario, horizon, onSelectComponent, sele
             scenario={scenario}
             horizon={horizon}
             depth={0}
+            leafContribMap={leafContribMap}
             onSelect={onSelectComponent}
             selectedId={selectedId}
           />

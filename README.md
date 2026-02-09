@@ -1,36 +1,70 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# AI Inflation Impact Simulator
+
+An interactive dashboard that models how AI adoption could affect U.S. consumer price inflation (CPI-U) across ~60 spending categories, under different adoption scenarios and time horizons.
+
+## Overview
+
+The simulator projects AI's impact on inflation by combining:
+
+- **BLS CPI data** — Real category weights and historical rates from the Bureau of Labor Statistics
+- **AI impact modifiers** — 500+ hand-researched modifier values mapping AI effects to individual CPI components, each with explanations and academic citations
+- **Scenario modeling** — Four scenarios ranging from no impact to transformative, grounded in published research from Acemoglu (MIT), IMF, Penn Wharton, and Goldman Sachs
+- **Time horizons** — 1-year, 3-year, and 10-year projections with exponential mean-reversion toward the Fed's 2% target
+
+## Scenarios
+
+| Scenario | Source | 10-Year CPI Impact |
+|---|---|---|
+| **Baseline** | No AI | 0pp (reference) |
+| **Conservative** | Acemoglu (MIT/NBER) | -0.3 to -0.6pp |
+| **Moderate** | Penn Wharton / IMF | -0.5 to -1.0pp |
+| **Transformative** | Goldman Sachs / Brynjolfsson | -1.0 to -1.5pp |
+
+## Pages
+
+- **Dashboard** — Summary cards, inflation trajectory chart, waterfall breakdown by major CPI group, and a 3-level CPI component tree browser
+- **Scenarios** — Side-by-side comparison of all scenarios with key assumptions and projected impacts
+- **Explorer** — Deep-dive into individual CPI components with per-scenario narratives, cross-scenario comparison, and weight shift analysis
+
+## Tech Stack
+
+- [Next.js 16](https://nextjs.org/) (App Router) with React 19 and TypeScript 5
+- [Tailwind CSS 4](https://tailwindcss.com/)
+- [Recharts 3](https://recharts.org/) for data visualization
+- Dark theme with JetBrains Mono font
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+src/
+├── app/                  # Next.js App Router pages
+│   ├── page.tsx          # Dashboard (main page)
+│   ├── scenarios/        # Scenario comparison page
+│   ├── explorer/         # CPI component deep-dive
+│   └── api/bls/          # BLS API proxy route
+├── components/           # React components by feature area
+│   ├── charts/           # Recharts visualizations
+│   ├── cpi/              # CPI tree browser & detail cards
+│   ├── dashboard/        # Dashboard-specific components
+│   ├── layout/           # Navbar
+│   └── scenarios/        # Scenario cards & comparison
+├── data/                 # Static data definitions
+│   ├── cpiComponents.ts  # 3-level CPI hierarchy (~60 leaves)
+│   ├── aiImpactModifiers.ts  # 500+ AI impact modifiers with narratives
+│   └── scenarios.ts      # Scenario definitions
+├── hooks/                # React hooks (useScenario, useBlsData)
+└── lib/                  # Pure logic (calculations, formatters, types)
+```
 
-## Learn More
+## License
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+MIT

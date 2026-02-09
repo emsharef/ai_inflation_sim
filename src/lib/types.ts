@@ -45,6 +45,7 @@ export interface ResearchCitation {
   source: string;
   url: string;
   keyFindings: string[];
+  summary: string;
 }
 
 export interface ProjectionResult {

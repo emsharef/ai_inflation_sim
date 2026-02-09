@@ -7,6 +7,7 @@ const navItems = [
   { href: '/', label: 'Dashboard' },
   { href: '/scenarios', label: 'Scenarios' },
   { href: '/explorer', label: 'Explorer' },
+  { href: '/literature', label: 'Literature' },
 ];
 
 export default function Navbar() {

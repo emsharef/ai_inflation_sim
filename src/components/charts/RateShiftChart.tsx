@@ -4,17 +4,17 @@ import { useMemo } from 'react';
 import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend,
 } from 'recharts';
-import { HorizonId, ScenarioId } from '@/lib/types';
-import { calculateAggregateProjection, projectMajorGroup } from '@/lib/calculations';
+import { ScenarioId, HorizonId } from '@/lib/types';
+import { projectMajorGroup } from '@/lib/calculations';
 import { getMajorGroups } from '@/data/cpiComponents';
 import { scenarios } from '@/data/scenarios';
 
-interface ScenarioComparisonChartProps {
+interface RateShiftChartProps {
+  scenario: ScenarioId;
   horizon: HorizonId;
-  activeScenario?: ScenarioId;
 }
 
-export default function ScenarioComparisonChart({ horizon, activeScenario }: ScenarioComparisonChartProps) {
+export default function RateShiftChart({ scenario, horizon }: RateShiftChartProps) {
   const data = useMemo(() => {
     const groups = getMajorGroups();
     return groups.map(g => {
@@ -34,9 +34,9 @@ export default function ScenarioComparisonChart({ horizon, activeScenario }: Sce
   return (
     <div className="bg-[#13131d] border border-[#2a2a3a] rounded-md p-4">
       <div className="mb-4">
-        <h3 className="text-sm font-medium text-[#e4e4ef]">Scenario Comparison</h3>
+        <h3 className="text-sm font-medium text-[#e4e4ef]">CPI Rate Shift</h3>
         <p className="text-[10px] text-[#606070]">
-          AI inflation impact (pp) by major group across all scenarios
+          AI-driven inflation rate change (pp) by major group across all scenarios
         </p>
       </div>
       <ResponsiveContainer width="100%" height={350}>
@@ -75,13 +75,13 @@ export default function ScenarioComparisonChart({ horizon, activeScenario }: Sce
             formatter={((value: any) => scenarios[value as ScenarioId]?.name || value) as never}
           />
           <Bar dataKey="conservative" fill="#3b82f6"
-            fillOpacity={!activeScenario || activeScenario === 'conservative' ? 0.8 : 0.2}
+            fillOpacity={!scenario || scenario === 'baseline' || scenario === 'conservative' ? 0.8 : 0.2}
             radius={[0, 2, 2, 0]} />
           <Bar dataKey="moderate" fill="#f59e0b"
-            fillOpacity={!activeScenario || activeScenario === 'moderate' ? 0.8 : 0.2}
+            fillOpacity={!scenario || scenario === 'baseline' || scenario === 'moderate' ? 0.8 : 0.2}
             radius={[0, 2, 2, 0]} />
           <Bar dataKey="transformative" fill="#10b981"
-            fillOpacity={!activeScenario || activeScenario === 'transformative' ? 0.8 : 0.2}
+            fillOpacity={!scenario || scenario === 'baseline' || scenario === 'transformative' ? 0.8 : 0.2}
             radius={[0, 2, 2, 0]} />
         </BarChart>
       </ResponsiveContainer>

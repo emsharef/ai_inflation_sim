@@ -5,6 +5,8 @@ import ScenarioSelector from '@/components/dashboard/ScenarioSelector';
 import ScenarioComparison from '@/components/scenarios/ScenarioComparison';
 import InflationTrajectoryChart from '@/components/charts/InflationTrajectoryChart';
 import ScenarioComparisonChart from '@/components/charts/ScenarioComparisonChart';
+import RateShiftChart from '@/components/charts/RateShiftChart';
+import WeightComparisonChart from '@/components/charts/WeightComparisonChart';
 import HeatmapGrid from '@/components/charts/HeatmapGrid';
 
 export default function ScenariosPage() {
@@ -35,7 +37,7 @@ export default function ScenariosPage() {
         onScenarioSelect={setScenario}
       />
 
-      {/* Charts */}
+      {/* Trajectory + aggregate comparison */}
       <div className="grid grid-cols-2 gap-4">
         <InflationTrajectoryChart
           scenario={scenario}
@@ -43,6 +45,12 @@ export default function ScenariosPage() {
           showAllScenarios
         />
         <ScenarioComparisonChart horizon={horizon} activeScenario={scenario} />
+      </div>
+
+      {/* Rate shift + Weight shift decomposition */}
+      <div className="grid grid-cols-2 gap-4">
+        <RateShiftChart scenario={scenario} horizon={horizon} />
+        <WeightComparisonChart scenario={scenario} horizon={horizon} />
       </div>
 
       {/* Full heatmap grid */}
